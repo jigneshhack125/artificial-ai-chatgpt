@@ -16,12 +16,24 @@ def speak(audio):
 	engine.say(audio)
 	engine.runAndWait()
         
+def wishMe():
+	hour = int(datetime.datetime.now().hour)
+	if hour>= 0 and hour<12:
+		speak("Good Morning Sir !")
+
+	elif hour>= 12 and hour<18:
+		speak("Good Afternoon Sir !")
+
+	else:
+		speak("Good Evening Sir !")
+                
+        
 chatStr = ""
 def chat(query):
     global chatStr
     print(chatStr)
     openai.api_key = apikey
-    chatStr += f"Harry: {query}\n Jarvis: "
+    chatStr += f"jignesh: {query}\n Jarvis: "
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt= chatStr,
@@ -86,11 +98,11 @@ if __name__ == '__main__':
                 webbrowser.open(site[1])
 
         if "open music" in query:
-            musicPath = "/Users/harry/Downloads/downfall-21371.mp3"
+            musicPath = "/Users/jignesh/Downloads/downfall-21371.mp3"
             os.system(f"open {musicPath}")
 
         elif "the time" in query:
-            musicPath = "/Users/harry/Downloads/downfall-21371.mp3"
+            musicPath = "/Users/jignesh/Downloads/downfall-21371.mp3"
             hour = datetime.datetime.now().strftime("%H")
             min = datetime.datetime.now().strftime("%M")
             speak(f"Sir time is {hour} bajke {min} minutes")
